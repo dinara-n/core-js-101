@@ -323,8 +323,24 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  const res = new Array((arr.length < 3) ? arr.length : 3).fill(0);
+  const newArr = arr.slice();
+  const res2 = res.map((elem) => {
+    let max = elem;
+    let index = null;
+    newArr.map((item, i) => {
+      if (item > max) {
+        max = item;
+        index = i;
+      }
+      return max;
+    });
+    newArr.splice(index, 1);
+    return max;
+  });
+  return res2;
+  // throw new Error('Not implemented');
 }
 
 
